@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Book Manager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Recipe Book Manager</h1>
+    </header>
+
+    <div class="container">
+
+        <!-- ========== LIST SECTION ========== -->
+        <div id="listSection">
+                        <div class="toolbar">
+                <input type="text" id="dishName" placeholder="Type a dish name, e.g. chicken, pasta, paneer">
+                <button onclick="searchOnline()">Get Recipe</button>
+            </div>
+            <div class="toolbar">
+                <input type="text" id="searchBox" placeholder="Search by name, ingredient or category">
+                <select id="categoryFilter">
+                    <option value="">All Categories</option>
+                    <option>Breakfast</option>
+                    <option>Lunch</option>
+                    <option>Dinner</option>
+                    <option>Snacks</option>
+                    <option>Dessert</option>
+                </select>
+                <select id="typeFilter">
+                    <option value="">Veg / Non-veg</option>
+                    <option>Veg</option>
+                    <option>Non-veg</option>
+                </select>
+                <label><input type="checkbox" id="favOnly"> Favorites only</label>
+                <button onclick="showList()">Search</button>
+            </div>
+
+            <div class="toolbar">
+                <button onclick="showAddForm()">+ Add Recipe</button>
+                <button onclick="showSection('cookSection')">What can I cook?</button>
+            </div>
+
+            <h2 id="listTitle">All Recipes</h2>
+            <div id="recipeList"></div>
+        </div>
+
+        <!-- ========== ADD / EDIT FORM ========== -->
+        <div id="formSection" class="hidden">
+            <h2 id="formTitle">Add Recipe</h2>
+
+            <label>Recipe Name</label>
+            <input type="text" id="name">
+
+            <label>Category</label>
+            <select id="category">
+                <option>Breakfast</option>
+                <option>Lunch</option>
+                <option>Dinner</option>
+                <option>Snacks</option>
+                <option>Dessert</option>
+            </select>
+
+            <label>Type</label>
+            <select id="type">
+                <option>Veg</option>
+                <option>Non-veg</option>
+            </select>
+
+            <label>Cooking Time (minutes)</label>
+            <input type="number" id="cookTime" min="0">
+
+            <label>Servings</label>
+            <input type="number" id="servings" min="1" value="1">
+
+            <label>Ingredients (one per line, e.g. "2 cup rice")</label>
+            <textarea id="ingredients" rows="6"></textarea>
+
+            <label>Steps (one per line)</label>
+            <textarea id="steps" rows="6"></textarea>
+
+            <button onclick="saveRecipe()">Save</button>
+            <button class="grey" onclick="backToList()">Cancel</button>
+        </div>
+
+        <!-- ========== RECIPE DETAIL ========== -->
+        <div id="detailSection" class="hidden">
+            <h2 id="detailName"></h2>
+            <p id="detailInfo"></p>
+
+            <label>Servings:</label>
+            <input type="number" id="newServings" min="1" oninput="scaleIngredients()">
+
+            <h3>Ingredients</h3>
+            <ul id="detailIngredients"></ul>
+
+            <h3>Steps</h3>
+            <p id="detailSteps" class="steps"></p>
+
+            <button class="grey" onclick="backToList()">Back</button>
+        </div>
+
+        <!-- ========== WHAT CAN I COOK ========== -->
+        <div id="cookSection" class="hidden">
+            <h2>What can I cook?</h2>
+            <p>Enter the ingredients you have, separated by commas.</p>
+            <input type="text" id="myIngredients" placeholder="e.g. rice, onion, tomato">
+            <button onclick="whatCanICook()">Find Recipes</button>
+            <button class="grey" onclick="backToList()">Back</button>
+        </div>
+        <!-- ========== ONLINE RECIPE RESULTS ========== -->
+        <div id="onlineSection" class="hidden">
+            <h2>Recipe Results</h2>
+            <div id="onlineResults"></div>
+            <button class="grey" onclick="backToList()">Back</button>
+        </div>`
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
